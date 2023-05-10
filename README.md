@@ -5,6 +5,7 @@
 - [How to Use](#how_to_use)
 - [Examples](#examples)
 - [Limitations](#limitations)
+- [Run Via Docker Image](#via_docker_image)
 
 <a name="description"></a>
 # Description
@@ -13,7 +14,8 @@ json2ecl is a command-line tool that examines JSON data and deduces the
 ECL RECORD definitions necessary to parse it.  The resulting ECL definitions are returned
 via standard out, suitable for piping or pasting into your favorite IDE.
 
-See [xml2ecl](https://github.com/dancamper/xml2ecl) for an XML version of this functionality.
+See [xml2ecl](https://github.com/hpccsystems-solutions-lab/xml2ecl) for an
+XML version of this functionality.
 
 ## ECL Record Definitions ???
 
@@ -322,3 +324,30 @@ That XPATH works for reading, but if you turned around and tried to write a new
 JSON file from the dataset using ECL, with that XPATH notation still attached to that field,
 you will get an error.  The workaround is to rewrite the data, perhaps through a
 PROJECT(), into a structure without XPATH or at least with more sensible XPATH values.
+
+<a name="via_docker_image"></a>
+# Run Via Docker Image
+
+json2ecl has been bundled with xml2ecl and published as an Ubuntu-based Docker image.
+The shell script [jx2ecl.sh](jx2ecl.sh) helps automate downloading of the proper Docker
+image and executing the correct tool depending on the type of the files passed as arguments.
+
+You can copy that single [jx2ecl.sh](jx2ecl.sh) to your system and make sure that it is
+executable and in your PATH.  Then, use the script like you would in the examples above:
+
+```none
+$ jx2ecl foo.json baz.json 
+
+TOPLEVEL_139_LAYOUT := RECORD
+    UTF8 foo {XPATH('foo')};
+    UNSIGNED start {XPATH('start')};
+    STRING f_end {XPATH('end')}; // null, float
+    REAL incr {XPATH('incr')};
+END;
+```
+
+The script will see that JSON files are passed in (via their file extension) and will
+execute the json2ecl tool found on the Docker image.
+
+Limitation:  Piping data via stdin to the shell script is not supported.  With the script,
+you can only parse files.
