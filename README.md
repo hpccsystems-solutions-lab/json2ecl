@@ -336,7 +336,7 @@ You can copy that single [jx2ecl.sh](jx2ecl.sh) to your system and make sure tha
 executable and in your PATH.  Then, use the script like you would in the examples above:
 
 ```none
-$ jx2ecl foo.json baz.json 
+$ jx2ecl.sh foo.json baz.json 
 
 TOPLEVEL_139_LAYOUT := RECORD
     UTF8 foo {XPATH('foo')};
