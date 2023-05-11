@@ -331,6 +331,7 @@ PROJECT(), into a structure without XPATH or at least with more sensible XPATH v
 json2ecl has been bundled with xml2ecl and published as an Ubuntu-based Docker image.
 The shell script [jx2ecl.sh](jx2ecl.sh) helps automate downloading of the proper Docker
 image and executing the correct tool depending on the type of the files passed as arguments.
+Both Docker and Podman container managers are supported.
 
 You can copy that single [jx2ecl.sh](jx2ecl.sh) to your system and make sure that it is
 executable and in your PATH.  Then, use the script like you would in the examples above:
@@ -345,6 +346,9 @@ TOPLEVEL_139_LAYOUT := RECORD
     REAL incr {XPATH('incr')};
 END;
 ```
+
+The script mounts the current directory within the Docker container and only those files
+in that directory (or in a subdirectory) are accessible.
 
 The script will see that JSON files are passed in (via their file extension) and will
 execute the json2ecl tool found on the Docker image.
