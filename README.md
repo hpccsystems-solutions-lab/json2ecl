@@ -328,7 +328,8 @@ PROJECT(), into a structure without XPATH or at least with more sensible XPATH v
 <a name="via_docker_image"></a>
 # Run Via Docker Image
 
-json2ecl has been bundled with xml2ecl and published as an Ubuntu-based Docker image.
+json2ecl has been bundled with xml2ecl and published as an Ubuntu-based Docker image
+[here](https://hub.docker.com/r/hpccsystems/solutions-lab/tags).
 The shell script [jx2ecl.sh](jx2ecl.sh) helps automate downloading of the proper Docker
 image and executing the correct tool depending on the type of the files passed as arguments.
 Both Docker and Podman container managers are supported.
